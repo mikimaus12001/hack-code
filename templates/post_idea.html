@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+        // Пример отправки POST запроса с помощью JS
+
+      // 1. Создаём новый объект XMLHttpRequest
+var xhr = new XMLHttpRequest();
+
+// 2. Конфигурируем его: POST-запрос на URL
+let url = new URL('http://127.0.0.1:3200/home/ideas/create');
+// 3. Задаем параметры
+url.searchParams.set('innovator_id', '2');
+url.searchParams.set('name', 'супер идея эльфийского дирижабля');
+url.searchParams.set('contest', 'Новатор Москвы');
+url.searchParams.set('nomination', 'Лидеры инноваций');
+
+xhr.open('POST', url);
+
+xhr.responseType = 'json';
+
+// 4. Отсылаем запрос
+xhr.send();
+
+// Ответ
+// тело ответа
+xhr.onload = function() {
+  let responseObj = xhr.response;
+  alert(responseObj.message); // Привет, мир!
+};
+
+if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+    alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); }// Например, 404: Not Found
+    </script>
+  </body>
+</html>
